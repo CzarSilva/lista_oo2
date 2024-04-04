@@ -1,5 +1,6 @@
 package exercicio3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conta {
@@ -8,35 +9,36 @@ public class Conta {
     private List<Prato> pratos;
     private Cliente cliente;
 
-    public Conta(int numero, List<Prato> pratos, Cliente cliente) {
+    public Conta(int numero, Cliente cliente) {
         this.numero = numero;
-        this.pratos = pratos;
+        this.pratos = new ArrayList<Prato>();
         this.cliente = cliente;
     }
 
-    public int getNumero() {
-        return numero;
+    public void adicionarEntrada(Prato prato){
+        pratos.add(prato);
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void adicionarPrincipal(Prato prato){
+        pratos.add(prato);
     }
 
-    public List<Prato> getPratos() {
-        return pratos;
+    public void adicionarSobremesa(Prato prato){
+        pratos.add(prato);
     }
 
-    public void setPratos(List<Prato> pratos) {
-        this.pratos = pratos;
-    }
+    public void fecharConta(){
+        System.out.println("Pratos condumiudos:");
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+        double total = 0.0;
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+        for(Prato prato : this.pratos){
+            total += prato.getPreco();
+            System.out.println(" - " + prato.getNome() + " = R$" + prato.getPreco() + "0");
+        }
 
+        total += (total*0.1);
+        System.out.println("Valor total = R$" + total + "0");
+    }
     
 }
